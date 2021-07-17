@@ -1,6 +1,7 @@
 package toni.ferreiro.brewery.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,7 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(
                         authorize -> {
                             authorize.antMatchers("/","/webjars/**","/login", "/resources/**").permitAll()
-                            .antMatchers("/beers/find","beers?*").permitAll();
+                            .antMatchers("/beers/find","beers?*").permitAll()
+                            .antMatchers(HttpMethod.GET, "/api/v1/beer/**").permitAll();
                 })
                 .authorizeRequests()
                 .anyRequest().authenticated()

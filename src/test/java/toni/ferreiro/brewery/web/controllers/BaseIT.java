@@ -15,10 +15,11 @@ import toni.ferreiro.brewery.services.BreweryService;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 public abstract class BaseIT {
+
     @Autowired
     WebApplicationContext wac;
 
-    MockMvc mockMvc;
+    protected MockMvc mockMvc;
 
     @MockBean
     BeerRepository beerRepository;
