@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             .antMatchers("/beers/find", "/beers*").permitAll()
                             .antMatchers(HttpMethod.GET, "/api/v1/beer/**").permitAll()
                             .mvcMatchers(HttpMethod.GET, "/api/v1/beerUpc/{upc}").permitAll();
-                } )
+                })
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
@@ -31,6 +33,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+    //    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("toni")
+//                .password("{noop}fercou")
+//                .roles("ADMIN")
+//                .and()
+//                .withUser("user")
+//                .password("{noop}password")
+//                .roles("USER");
+//    }
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
@@ -41,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .build();
 
         UserDetails user = User.withDefaultPasswordEncoder()
-                .username("toni")
-                .password("fercou")
+                .username("user")
+                .password("password")
                 .roles("USER")
                 .build();
 
