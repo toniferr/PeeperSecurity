@@ -43,4 +43,5 @@ public abstract class BaseIT {
                 .apply(springSecurity())
                 .build();
     }
+
 }
