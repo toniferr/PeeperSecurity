@@ -1,6 +1,7 @@
 package toni.ferreiro.brewery.web.controllers;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PasswordEncodingTest {
 
     static final String PASSWORD = "password";
+
+    @Test
+    void testBcrypt() {
+        PasswordEncoder bcrypt = new BCryptPasswordEncoder(); //. Clients can optionally supply a "version" ($2a, $2b, $2y) and a "strength" (a.k.a. log rounds in BCrypt) and a SecureRandom instance.10 por defecto
+
+        System.out.println(bcrypt.encode(PASSWORD));
+        System.out.println(bcrypt.encode(PASSWORD));
+
+    }
 
     @Test
     void testSha256() {

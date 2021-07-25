@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,20 +50,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        return new LdapShaPasswordEncoder();
 //    }
 
+//    @Bean
+//    PasswordEncoder passwordEncoder(){
+//        return new StandardPasswordEncoder();
+//    }
+
     @Bean
     PasswordEncoder passwordEncoder(){
-        return new StandardPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("toni")
-                .password("df56d52bbb9c6abfcd72b8c1fdb26b51c043da917563cf23ef6cd30cdcef0db4ca40ae62763e9e54")
+                .password("$2a$10$soKYoIYOmODTnHRGnn1Wmunek5sEwn.wic.6.3yDfNEYpZmmL1n3y")
                 .roles("ADMIN")
                 .and()
                 .withUser("user")
-                .password("df56d52bbb9c6abfcd72b8c1fdb26b51c043da917563cf23ef6cd30cdcef0db4ca40ae62763e9e54")
+                .password("$2a$10$soKYoIYOmODTnHRGnn1Wmunek5sEwn.wic.6.3yDfNEYpZmmL1n3y")
                 .roles("USER");
 
         auth.inMemoryAuthentication().withUser("user2").password("pass").roles("CUSTOMER");
