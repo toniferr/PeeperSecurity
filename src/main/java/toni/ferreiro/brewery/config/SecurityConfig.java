@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
@@ -43,20 +44,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        return NoOpPasswordEncoder.getInstance();
 //    }
 
+//    @Bean
+//    PasswordEncoder passwordEncoder(){
+//        return new LdapShaPasswordEncoder();
+//    }
+
     @Bean
     PasswordEncoder passwordEncoder(){
-        return new LdapShaPasswordEncoder();
+        return new StandardPasswordEncoder();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("toni")
-                .password("fercou")
+                .password("df56d52bbb9c6abfcd72b8c1fdb26b51c043da917563cf23ef6cd30cdcef0db4ca40ae62763e9e54")
                 .roles("ADMIN")
                 .and()
                 .withUser("user")
-                .password("{SSHA}MN0XGHnXEP15g/SgRLY5puxB9T4XJBLJIlDSMw==")
+                .password("df56d52bbb9c6abfcd72b8c1fdb26b51c043da917563cf23ef6cd30cdcef0db4ca40ae62763e9e54")
                 .roles("USER");
 
         auth.inMemoryAuthentication().withUser("user2").password("pass").roles("CUSTOMER");
