@@ -15,6 +15,16 @@ public class PasswordEncodingTest {
     static final String PASSWORD = "password";
 
     @Test
+    void testBcrypt10() {
+        PasswordEncoder bcrypt = new BCryptPasswordEncoder(10);
+
+        System.out.println(bcrypt.encode(PASSWORD));
+        System.out.println(bcrypt.encode(PASSWORD));
+        System.out.println(bcrypt.encode("fercou"));
+
+    }
+
+    @Test
     void testBcrypt() {
         PasswordEncoder bcrypt = new BCryptPasswordEncoder(); //. Clients can optionally supply a "version" ($2a, $2b, $2y) and a "strength" (a.k.a. log rounds in BCrypt) and a SecureRandom instance.10 por defecto
 

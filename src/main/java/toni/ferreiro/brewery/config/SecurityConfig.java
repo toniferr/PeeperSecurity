@@ -92,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("toni")
-                .password("{bcrypt}$2a$10$2qJNavjz105mv0YBEyil1ePHVSxhS4J4EmPXB/cr2/LBaxc2NMR1K")
+                .password("{bcrypt10}$2a$10$Li6lfVOfdG2PF9QYH2O69e/nLXB7ujQ0YBTwfxMLOOdmAQDJGvGCq")
                 .roles("ADMIN")
                 .and()
                 .withUser("user")

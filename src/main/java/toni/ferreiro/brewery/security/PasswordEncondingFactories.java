@@ -10,9 +10,10 @@ import java.util.Map;
 public class PasswordEncondingFactories {
 
     public static PasswordEncoder createDelegatingPasswordEncoder() {
-        String encodingId = "bcrypt";
+        String encodingId = "bcrypt10";
         Map<String, PasswordEncoder> encoders = new HashMap<>();
-        encoders.put(encodingId, new BCryptPasswordEncoder());
+        encoders.put(encodingId, new BCryptPasswordEncoder(10));
+        encoders.put("bcrypt", new BCryptPasswordEncoder());
         encoders.put("ldap", new org.springframework.security.crypto.password.LdapShaPasswordEncoder());
         encoders.put("noop", org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance());
         encoders.put("sha256", new org.springframework.security.crypto.password.StandardPasswordEncoder());
