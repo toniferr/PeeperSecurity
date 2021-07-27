@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,7 +22,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest
+@SpringBootTest
 public class BeerControllerIT extends BaseIT{
 
     @Test
@@ -32,7 +33,6 @@ public class BeerControllerIT extends BaseIT{
                 .andExpect(model().attributeExists("beer"));
     }
 
-
     @Test
     void initCreationForm() throws Exception {
         mockMvc.perform(get("/beers/new").with(httpBasic("user", "password")))
@@ -42,8 +42,8 @@ public class BeerControllerIT extends BaseIT{
     }
 
     @Test
-    void initCreationFormWithUser2() throws Exception {
-        mockMvc.perform(get("/beers/new").with(httpBasic("user2", "otrapassword")))
+    void initCreationFormWithScott() throws Exception {
+        mockMvc.perform(get("/beers/new").with(httpBasic("user2", "pass2")))
                 .andExpect(status().isOk())
                 .andExpect(view().name("beers/createBeer"))
                 .andExpect(model().attributeExists("beer"));
