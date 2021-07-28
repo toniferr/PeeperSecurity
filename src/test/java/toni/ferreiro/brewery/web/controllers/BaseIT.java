@@ -15,7 +15,6 @@ import toni.ferreiro.brewery.services.BreweryService;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 public abstract class BaseIT {
-
     @Autowired
     WebApplicationContext wac;
 
@@ -43,5 +42,4 @@ public abstract class BaseIT {
                 .apply(springSecurity())
                 .build();
     }
-
 }
