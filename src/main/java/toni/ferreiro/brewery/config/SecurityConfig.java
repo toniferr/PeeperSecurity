@@ -37,10 +37,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Bean
+    /**** En los siguientes metodos se utilizan password encoder
+     * paquete org.springframework.security.crypto.password
+     *
+     */
+/*//    @Bean
 //    PasswordEncoder passwordEncoder() {
 //        return NoOpPasswordEncoder.getInstance();
-//    }
+//    }*/
 
 //    @Bean
 //    PasswordEncoder passwordEncoder(){
@@ -63,11 +67,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
 
+    /**** Utiliza custom delegating password encoder
+     * Se usa la clase PasswordEncondingFactories del paquete toni.ferreiro.brewery.security
+     */
     @Bean
     PasswordEncoder passwordEncoder(){
         return PasswordEncondingFactories.createDelegatingPasswordEncoder();
     }
 
+
+    /**** IN MEMORY AUTHENTICATION PROVIDER ****/
+
+    /*** FLUENT API ***/
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication()
@@ -82,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        auth.inMemoryAuthentication().withUser("user2").password("{ldap}{SSHA}VaDo0Qs5shefdCxR3uiIqB0hhJRm9Rjqo90rIA==").roles("CUSTOMER");
 //    }
 
-
+    /*** DEPRECATED **/
 //    @Override
 //    @Bean
 //    protected UserDetailsService userDetailsService() {
